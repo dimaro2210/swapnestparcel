@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 // Constants
 const AUTH_KEY = 'swapnest_admin_auth';
-const ADMIN_PASSWORD = 'Admin@123';
+const ADMIN_PASSWORD = 'admin@231';
 
 // EMAILJS CONFIGURATION
 // ============================================
