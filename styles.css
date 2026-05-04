@@ -1681,7 +1681,18 @@ select {
     }
 }
 
-.feature-item {}
+.feature-item {
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: var(--radius-2xl);
+    transition: var(--transition);
+}
+
+.feature-item:hover {
+    transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.08);
+}
 
 .feature-icon {
     display: inline-flex;
