@@ -84,24 +84,7 @@
     </div>
   </div>
 
-  <!-- Floating Animated Cards -->
-  <div class="floating-elements" aria-hidden="true">
-    <div class="float-card float-card-1">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13"></rect><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></svg>
-      <span>Fast Delivery</span>
-    </div>
-    <div class="float-card float-card-2">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
-      <span>Secure Handling</span>
-    </div>
-    <div class="float-card float-card-3">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
-      <span>Global Network</span>
-    </div>
-    <div class="float-text float-text-1">📦 Real-time tracking</div>
-    <div class="float-text float-text-2">🌍 180+ Countries</div>
-    <div class="float-text float-text-3">⚡ Express Shipping</div>
-  </div>
+
 
   <!-- Hero Section -->
   <section class="hero" id="hero">
@@ -958,48 +941,6 @@
     </div>
   </footer>
 
-  <!-- Sticky Customer Service Button (Opens Tawk.to Chat) -->
-  <button type="button" class="customer-service-fab" title="Chat with Customer Service"
-    onclick="if(typeof Tawk_API !== 'undefined') Tawk_API.toggle();">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-      stroke-linejoin="round">
-      <!-- Head/face circle -->
-      <circle cx="12" cy="10" r="4"></circle>
-      <!-- Headset band -->
-      <path d="M4 12v-1a8 8 0 0 1 16 0v1"></path>
-      <!-- Left earpiece -->
-      <rect x="2" y="12" width="3" height="5" rx="1"></rect>
-      <!-- Right earpiece -->
-      <rect x="19" y="12" width="3" height="5" rx="1"></rect>
-      <!-- Microphone -->
-      <path d="M5 17v1a2 2 0 0 0 2 2h2"></path>
-    </svg>
-  </button>
-
-  <!--Start of Tawk.to Script-->
-  <script type="text/javascript">
-    var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
-
-    // Ensure widget is hidden on load
-    Tawk_API.onLoad = function () {
-      Tawk_API.hide();
-    };
-
-    // Hide widget when minimized/closed
-    Tawk_API.onChatMinimized = function () {
-      Tawk_API.hide();
-    };
-
-    (function () {
-      var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
-      s1.async = true;
-      s1.src = 'https://embed.tawk.to/6972f79e08bfea1981634530/1jfkhehco';
-      s1.charset = 'UTF-8';
-      s1.setAttribute('crossorigin', '*');
-      s0.parentNode.insertBefore(s1, s0);
-    })();
-  </script>
-  <!--End of Tawk.to Script-->
 
   <!-- Supabase SDK -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
