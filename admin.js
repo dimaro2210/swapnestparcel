@@ -383,33 +383,32 @@ async function getStoredShipments(forceRefresh = false) {
     }
 
     if (typeof fetchAllShipments !== 'function') {
-      console.error('Supabase client not initialized correctly');
-      // Attempt to recover if window.supabase exists? 
-      // For now, return empty or mock if needed, but error is better.
+      console.error('Supabase client function fetchAllShipments not found');
       return [];
     }
 
     const data = await fetchAllShipments();
+    if (!data || data.length === 0) {
+      console.warn('No shipments found or error during fetch');
+    }
     allShipmentsCache = data;
     return data;
   } catch (error) {
-    console.error('Error fetching shipments from Supabase:', error);
-    // Don't alert on every keystroke/render
-    // alert('Error connecting to database. Please check your internet connection.');
+    console.error('Error in getStoredShipments:', error);
     return [];
   }
 }
 
 async function saveShipment(shipment) {
   try {
-    const success = await upsertShipment(shipment);
-    if (!success) {
-      throw new Error('Failed to save shipment');
+    const result = await upsertShipment(shipment);
+    if (!result.success) {
+      throw new Error(result.error || 'Failed to save shipment');
     }
     return true;
   } catch (error) {
     console.error('Error saving shipment to Supabase:', error);
-    alert('Error saving shipment. Please check your internet connection and try again.');
+    alert('Error saving shipment: ' + error.message);
     return false;
   }
 }

@@ -21,7 +21,10 @@ async function fetchAllShipments() {
             .select('*')
             .order('created_at', { ascending: false });
 
-        if (error) throw error;
+        if (error) {
+            console.error('Supabase fetch error:', error);
+            throw error;
+        }
 
         // Fetch route history for all shipments
         const shipmentsWithHistory = await Promise.all(
@@ -105,7 +108,10 @@ async function upsertShipment(shipmentData) {
                 .select('id')
                 .single();
 
-            if (error) throw error;
+            if (error) {
+                console.error('Supabase update error:', error);
+                throw error;
+            }
             shipmentId = data.id;
         } else {
             // Insert new shipment
@@ -115,7 +121,10 @@ async function upsertShipment(shipmentData) {
                 .select('id')
                 .single();
 
-            if (error) throw error;
+            if (error) {
+                console.error('Supabase insert error:', error);
+                throw error;
+            }
             shipmentId = data.id;
         }
 
@@ -152,10 +161,10 @@ async function upsertShipment(shipmentData) {
             }
         }
 
-        return true;
+        return { success: true };
     } catch (error) {
         console.error('Error upserting shipment:', error);
-        return false;
+        return { success: false, error: error.message || 'Unknown database error' };
     }
 }
 
