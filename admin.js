@@ -522,6 +522,29 @@ const loginErrorMessage = document.getElementById('loginErrorMessage');
 const loginBtn = document.getElementById('loginBtn');
 const loginBtnText = document.getElementById('loginBtnText');
 
+// Password toggle
+const togglePasswordBtn = document.getElementById('togglePasswordBtn');
+const eyeIcon = document.getElementById('eyeIcon');
+const eyeOffIcon = document.getElementById('eyeOffIcon');
+
+if (togglePasswordBtn && passwordInput) {
+  togglePasswordBtn.addEventListener('click', function() {
+    if (passwordInput.type === 'password') {
+      passwordInput.type = 'text';
+      eyeIcon.classList.add('hidden');
+      if (eyeIcon.style.display !== '') eyeIcon.style.display = 'none';
+      eyeOffIcon.classList.remove('hidden');
+      if (eyeOffIcon.style.display === 'none') eyeOffIcon.style.display = '';
+    } else {
+      passwordInput.type = 'password';
+      eyeIcon.classList.remove('hidden');
+      if (eyeIcon.style.display === 'none') eyeIcon.style.display = '';
+      eyeOffIcon.classList.add('hidden');
+      if (eyeOffIcon.style.display !== '') eyeOffIcon.style.display = 'none';
+    }
+  });
+}
+
 if (loginForm) {
   loginForm.addEventListener('submit', function (e) {
     e.preventDefault();
