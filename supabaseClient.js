@@ -176,11 +176,14 @@ async function deleteShipmentFromDB(trackingCode) {
             .delete()
             .eq('tracking_code', trackingCode);
 
-        if (error) throw error;
-        return true;
+        if (error) {
+            console.error('Supabase delete error:', error);
+            throw error;
+        }
+        return { success: true };
     } catch (error) {
         console.error('Error deleting shipment:', error);
-        return false;
+        return { success: false, error: error.message || 'Unknown database error' };
     }
 }
 

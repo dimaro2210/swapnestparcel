@@ -415,14 +415,14 @@ async function saveShipment(shipment) {
 
 async function deleteShipment(trackingCode) {
   try {
-    const success = await deleteShipmentFromDB(trackingCode);
-    if (!success) {
-      throw new Error('Failed to delete shipment');
+    const result = await deleteShipmentFromDB(trackingCode);
+    if (!result.success) {
+      throw new Error(result.error || 'Failed to delete shipment');
     }
     return true;
   } catch (error) {
     console.error('Error deleting shipment from Supabase:', error);
-    alert('Error deleting shipment. Please check your internet connection and try again.');
+    alert('Error deleting shipment: ' + error.message);
     return false;
   }
 }
@@ -637,8 +637,8 @@ if (searchInput) {
   });
 }
 
-async function renderShipmentList(searchTerm = '') {
-  const shipments = await getStoredShipments();
+async function renderShipmentList(searchTerm = '', forceRefresh = false) {
+  const shipments = await getStoredShipments(forceRefresh);
   const filtered = shipments.filter(s =>
     s.trackingCode.toLowerCase().includes(searchTerm.toLowerCase()) ||
     (s.receiver?.name || '').toLowerCase().includes(searchTerm.toLowerCase())
@@ -738,8 +738,10 @@ function renderCardView(shipments) {
 
 async function confirmDelete(trackingCode) {
   if (confirm('Are you sure you want to delete this shipment?')) {
-    await deleteShipment(trackingCode);
-    await renderShipmentList(searchInput ? searchInput.value : '');
+    const success = await deleteShipment(trackingCode);
+    if (success) {
+      await renderShipmentList(searchInput ? searchInput.value : '', true);
+    }
   }
 }
 
