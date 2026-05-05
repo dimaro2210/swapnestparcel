@@ -1057,7 +1057,7 @@ if (shipmentForm) {
       estimatedDelivery: formData.get('expectedDeliveryDate'),
       createdAt: timestamp,
       specialInstructions: formData.get('specialInstructions') || '',
-      currentStatus: 'pending',
+      currentStatus: formData.get('initialStatus') || 'pending',
       currentCenter: originWarehouse ? originWarehouse.id : null,
       currentLocation: originWarehouse ? originWarehouse.location : originCountry,
       isRoutingActive: false,
@@ -1065,7 +1065,7 @@ if (shipmentForm) {
         id: generateUUID(),
         location: originWarehouse ? originWarehouse.location : originCountry,
         timestamp: timestamp,
-        status: 'pending',
+        status: formData.get('initialStatus') || 'pending',
         description: originWarehouse
           ? `Shipment created at ${originWarehouse.location}`
           : 'Shipment created and ready for processing',
