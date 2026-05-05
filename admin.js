@@ -36,9 +36,9 @@ const ADMIN_PASSWORD = 'admin@231';
 // EMAILJS CONFIGURATION
 // ============================================
 // IMPORTANT: Replace these with your actual EmailJS credentials
-const EMAILJS_PUBLIC_KEY = 'YHu_W23A0rG6z2iGq';      // Get from EmailJS Dashboard > Account > General
-const EMAILJS_SERVICE_ID = 'service_yx0bmlt';      // Get from EmailJS Dashboard > Email Services
-const EMAILJS_TEMPLATE_ID = 'template_uz9h9c9';    // Get from EmailJS Dashboard > Email Templates
+const EMAILJS_PUBLIC_KEY = 'P0vPdu9Gi0pj4NOLC';      // Get from EmailJS Dashboard > Account > General
+const EMAILJS_SERVICE_ID = 'service_d6dbzxz';      // Get from EmailJS Dashboard > Email Services
+const EMAILJS_TEMPLATE_ID = 'template_mfgizgl';    // Get from EmailJS Dashboard > Email Templates
 
 // Initialize EmailJS
 (function () {
@@ -527,7 +527,7 @@ const eyeIcon = document.getElementById('eyeIcon');
 const eyeOffIcon = document.getElementById('eyeOffIcon');
 
 if (togglePasswordBtn && passwordInput) {
-  togglePasswordBtn.addEventListener('click', function() {
+  togglePasswordBtn.addEventListener('click', function () {
     if (passwordInput.type === 'password') {
       passwordInput.type = 'text';
       eyeIcon.classList.add('hidden');
