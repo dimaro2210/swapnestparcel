@@ -207,7 +207,7 @@ function displayTrackingResult(shipment) {
 
   trackingResult.innerHTML = `
     <!-- Map Section -->
-    <div class="tracking-map-section" style="margin-bottom: 1.5rem; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.08); border: 1px solid #e5e7eb;">
+    <div class="tracking-map-section" style="margin-bottom: 1.5rem; border-radius: 12px; overflow: hidden; box-shadow: var(--shadow-md); border: 1px solid var(--border-light); background: var(--card-bg);">
       <div class="map-container" id="trackingMapContainer">
         <div id="trackingMap" style="height: 350px; width: 100%; z-index: 1;"></div>
       </div>
@@ -260,8 +260,8 @@ function displayTrackingResult(shipment) {
     
     <!-- Shipment Details Section -->
     ${(shipment.shipmentType || shipment.carrier || shipment.packageInfo?.weight) ? `
-    <div class="shipment-details-section" style="background: white; border-radius: 12px; border: 1px solid #e5e7eb; padding: 1.5rem; margin-bottom: 1.5rem; box-shadow: 0 4px 15px rgba(0,0,0,0.03);">
-      <h3 style="font-size: 1rem; font-weight: 700; color: #0A1628; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem; margin-top: 0;">
+    <div class="shipment-details-section" style="background: var(--card-bg); border-radius: 12px; border: 1px solid var(--border-light); padding: 1.5rem; margin-bottom: 1.5rem; box-shadow: var(--shadow-sm);">
+      <h3 style="font-size: 1rem; font-weight: 700; color: var(--heading-color); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem; margin-top: 0;">
         <svg viewBox="0 0 24 24" fill="none" stroke="#00D4FF" stroke-width="2" style="width: 1.25rem; height: 1.25rem;">
           <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
           <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
@@ -270,17 +270,17 @@ function displayTrackingResult(shipment) {
         Shipment Details
       </h3>
       <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem; font-size: 0.9375rem; color: #4b5563;">
-        ${shipment.carrier ? `<div><p style="font-size: 0.75rem; color: #9ca3af; text-transform: uppercase; margin-bottom: 0.25rem;">Carrier</p><strong style="color: #0A1628;">${shipment.carrier}</strong></div>` : ''}
-        ${shipment.shipmentType ? `<div><p style="font-size: 0.75rem; color: #9ca3af; text-transform: uppercase; margin-bottom: 0.25rem;">Service Type</p><strong style="color: #0A1628;">${shipment.shipmentType}</strong></div>` : ''}
-        ${shipment.packageInfo?.weight ? `<div><p style="font-size: 0.75rem; color: #9ca3af; text-transform: uppercase; margin-bottom: 0.25rem;">Weight</p><strong style="color: #0A1628;">${shipment.packageInfo.weight} kg</strong></div>` : ''}
-        ${shipment.estimatedDelivery ? `<div><p style="font-size: 0.75rem; color: #9ca3af; text-transform: uppercase; margin-bottom: 0.25rem;">Est. Delivery</p><strong style="color: #0A1628;">${formatDate(shipment.estimatedDelivery)}</strong></div>` : ''}
+        ${shipment.carrier ? `<div><p style="font-size: 0.75rem; color: var(--muted-color); text-transform: uppercase; margin-bottom: 0.25rem;">Carrier</p><strong style="color: var(--heading-color);">${shipment.carrier}</strong></div>` : ''}
+        ${shipment.shipmentType ? `<div><p style="font-size: 0.75rem; color: var(--muted-color); text-transform: uppercase; margin-bottom: 0.25rem;">Service Type</p><strong style="color: var(--heading-color);">${shipment.shipmentType}</strong></div>` : ''}
+        ${shipment.packageInfo?.weight ? `<div><p style="font-size: 0.75rem; color: var(--muted-color); text-transform: uppercase; margin-bottom: 0.25rem;">Weight</p><strong style="color: var(--heading-color);">${shipment.packageInfo.weight} kg</strong></div>` : ''}
+        ${shipment.estimatedDelivery ? `<div><p style="font-size: 0.75rem; color: var(--muted-color); text-transform: uppercase; margin-bottom: 0.25rem;">Est. Delivery</p><strong style="color: var(--heading-color);">${formatDate(shipment.estimatedDelivery)}</strong></div>` : ''}
       </div>
     </div>
     ` : ''}
     
     <!-- Timeline Section -->
-    <div class="timeline-section" style="background: white; border-radius: 12px; border: 1px solid #e5e7eb; padding: 1.5rem; box-shadow: 0 4px 15px rgba(0,0,0,0.03);">
-      <h3 style="font-size: 1rem; font-weight: 700; color: #0A1628; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.5rem; margin-top: 0;">
+    <div class="timeline-section" style="background: var(--card-bg); border-radius: 12px; border: 1px solid var(--border-light); padding: 1.5rem; box-shadow: var(--shadow-sm);">
+      <h3 style="font-size: 1rem; font-weight: 700; color: var(--heading-color); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.5rem; margin-top: 0;">
         <svg viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="2" style="width: 1.25rem; height: 1.25rem;">
           <circle cx="12" cy="12" r="10"></circle>
           <polyline points="12 6 12 12 16 14"></polyline>
