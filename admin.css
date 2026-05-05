@@ -878,7 +878,7 @@
     padding: 0.625rem 2.5rem 0.625rem 0.75rem;
     border: 1px solid var(--border-light);
     border-radius: var(--radius-md);
-    background-color: white;
+    background-color: var(--card-bg);
     color: var(--text-dark);
     font-size: 0.875rem;
     line-height: 1.5;
@@ -972,7 +972,7 @@
 .form-group select:disabled,
 .form-section select:disabled,
 .edit-form select:disabled {
-    background-color: #f3f4f6;
+    background-color: var(--section-bg);
     color: var(--muted-color);
     cursor: not-allowed;
 }
@@ -1225,7 +1225,7 @@
     padding: 1rem;
     background: var(--section-bg);
     border-radius: var(--radius-md);
-    border: 1px solid #f3f4f6;
+    border: 1px solid var(--border-light);
     transition: border-color 0.3s;
 }
 
@@ -1544,7 +1544,7 @@
     flex-direction: column;
     gap: 0.75rem;
     padding-top: 1rem;
-    border-top: 1px solid #e5e7eb;
+    border-top: 1px solid var(--border-light);
     margin-top: 1rem;
 }
 
@@ -1622,7 +1622,7 @@
 .routing-map {
     height: 250px;
     width: 100%;
-    background: #f3f4f6;
+    background: var(--section-bg);
 }
 
 @media (min-width: 640px) {
@@ -2319,7 +2319,7 @@ body {
     right: 1rem;
     top: 50%;
     transform: translateY(-50%);
-    color: #9ca3af;
+    color: var(--muted-color);
     background: transparent;
     border: none;
     cursor: pointer;
@@ -2332,7 +2332,7 @@ body {
 .password-toggle svg {
     width: 1.25rem;
     height: 1.25rem;
-    color: #9ca3af;
+    color: var(--muted-color);
     transition: color 0.3s;
 }
 

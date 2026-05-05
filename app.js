@@ -207,15 +207,15 @@ function displayTrackingResult(shipment) {
 
   trackingResult.innerHTML = `
     <!-- Map Section -->
-    <div class="tracking-map-section" style="margin-bottom: 1.5rem;">
+    <div class="tracking-map-section" style="margin-bottom: 1.5rem; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.08); border: 1px solid #e5e7eb;">
       <div class="map-container" id="trackingMapContainer">
-        <div id="trackingMap" style="height: 300px; width: 100%;"></div>
+        <div id="trackingMap" style="height: 350px; width: 100%; z-index: 1;"></div>
       </div>
     </div>
     
     <!-- Special Instructions Notice - Yellow Alert (Only for special instructions) -->
     ${shipment.specialInstructions ? `
-      <div class="special-instructions-notice" style="margin-bottom: 1.5rem; padding: 1rem 1.25rem; background: linear-gradient(135deg, #fef3c7, #fef9c3); border-radius: 0.75rem; border: 2px solid #f59e0b; box-shadow: 0 2px 8px rgba(245, 158, 11, 0.2);">
+      <div class="special-instructions-notice" style="margin-bottom: 1.5rem; padding: 1rem 1.25rem; background: linear-gradient(135deg, #fef3c7, #fef9c3); border-radius: 12px; border: 1px solid #f59e0b; box-shadow: 0 2px 8px rgba(245, 158, 11, 0.15);">
         <div style="display: flex; align-items: flex-start; gap: 0.75rem;">
           <svg viewBox="0 0 24 24" fill="none" stroke="#d97706" stroke-width="2" style="width: 1.5rem; height: 1.5rem; flex-shrink: 0; margin-top: 2px;">
             <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
@@ -224,57 +224,70 @@ function displayTrackingResult(shipment) {
           </svg>
           <div>
             <p style="font-size: 0.75rem; font-weight: 700; color: #92400e; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.25rem;">Special Instructions</p>
-            <p style="font-size: 0.9375rem; color: #78350f; line-height: 1.5;">${shipment.specialInstructions}</p>
+            <p style="font-size: 0.9375rem; color: #78350f; line-height: 1.5; margin: 0;">${shipment.specialInstructions}</p>
           </div>
         </div>
       </div>
     ` : ''}
     
     <!-- Tracking Header with Status -->
-    <div class="tracking-header-section" style="background: linear-gradient(135deg, #0A1628, #112240); border-radius: 0.75rem; padding: 1.25rem; margin-bottom: 1rem; color: white;">
+    <div class="tracking-header-section" style="background: linear-gradient(135deg, #0A1628, #1a2f4c); border-radius: 12px; padding: 1.5rem; margin-bottom: 1.5rem; color: white; box-shadow: 0 4px 20px rgba(10,22,40,0.15);">
       <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 1rem;">
         <div>
-          <p style="font-size: 0.6875rem; color: rgba(255,255,255,0.6); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.25rem;">Tracking Code</p>
-          <p style="font-size: 1.25rem; font-family: monospace; font-weight: 700; color: #00D4FF; word-break: break-all;">${shipment.trackingCode}</p>
+          <p style="font-size: 0.75rem; color: rgba(255,255,255,0.7); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.25rem;">Tracking Code</p>
+          <p style="font-size: 1.5rem; font-family: monospace; font-weight: 700; color: #00D4FF; margin: 0; word-break: break-all; letter-spacing: 1px;">${shipment.trackingCode}</p>
         </div>
-        <span class="${getStatusClass(shipment.currentStatus)}" style="font-size: 0.875rem;">${getStatusLabel(shipment.currentStatus)}</span>
+        <span class="${getStatusClass(shipment.currentStatus)}" style="font-size: 0.875rem; padding: 0.5rem 1rem; border-radius: 20px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em;">${getStatusLabel(shipment.currentStatus)}</span>
       </div>
-      ${currentLocation ? `
-        <div style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.1);">
-          <p style="font-size: 0.6875rem; color: rgba(255,255,255,0.6); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.25rem;">Current Location</p>
-          <p style="font-weight: 600; color: white; font-size: 1rem;">${currentLocation}</p>
+      
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.1);">
+        <div>
+          <p style="font-size: 0.75rem; color: rgba(255,255,255,0.7); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.25rem;">Origin</p>
+          <p style="font-weight: 600; color: white; font-size: 1rem; margin: 0;">${originDisplay || 'N/A'}</p>
         </div>
-      ` : ''}
+        <div>
+          <p style="font-size: 0.75rem; color: rgba(255,255,255,0.7); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.25rem;">Destination</p>
+          <p style="font-weight: 600; color: white; font-size: 1rem; margin: 0;">${destinationDisplay || 'N/A'}</p>
+        </div>
+        ${currentLocation ? `
+          <div>
+            <p style="font-size: 0.75rem; color: rgba(255,255,255,0.7); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.25rem;">Current Location</p>
+            <p style="font-weight: 600; color: #22c55e; font-size: 1rem; margin: 0;">📍 ${currentLocation}</p>
+          </div>
+        ` : ''}
+      </div>
     </div>
     
-    <!-- Shipment Details Section (Simplified) -->
-    ${(shipment.shipmentType || shipment.carrier) ? `
-    <div class="shipment-details-section" style="background: white; border-radius: 0.75rem; border: 1px solid #e5e7eb; padding: 1rem; margin-bottom: 1rem; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
-      <h3 style="font-size: 0.8125rem; font-weight: 700; color: #0A1628; margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.5rem;">
-        <svg viewBox="0 0 24 24" fill="none" stroke="#00D4FF" stroke-width="2" style="width: 1rem; height: 1rem;">
+    <!-- Shipment Details Section -->
+    ${(shipment.shipmentType || shipment.carrier || shipment.packageInfo?.weight) ? `
+    <div class="shipment-details-section" style="background: white; border-radius: 12px; border: 1px solid #e5e7eb; padding: 1.5rem; margin-bottom: 1.5rem; box-shadow: 0 4px 15px rgba(0,0,0,0.03);">
+      <h3 style="font-size: 1rem; font-weight: 700; color: #0A1628; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem; margin-top: 0;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#00D4FF" stroke-width="2" style="width: 1.25rem; height: 1.25rem;">
           <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
           <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
           <line x1="12" y1="22.08" x2="12" y2="12"></line>
         </svg>
         Shipment Details
       </h3>
-      <div style="display: flex; flex-wrap: wrap; gap: 1rem; font-size: 0.875rem; color: #4b5563;">
-        ${shipment.carrier ? `<p><span style="color: #9ca3af;">Carrier:</span> <strong style="color: #0A1628;">${shipment.carrier}</strong></p>` : ''}
-        ${shipment.shipmentType ? `<p><span style="color: #9ca3af;">Type:</span> <strong style="color: #0A1628;">${shipment.shipmentType}</strong></p>` : ''}
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem; font-size: 0.9375rem; color: #4b5563;">
+        ${shipment.carrier ? `<div><p style="font-size: 0.75rem; color: #9ca3af; text-transform: uppercase; margin-bottom: 0.25rem;">Carrier</p><strong style="color: #0A1628;">${shipment.carrier}</strong></div>` : ''}
+        ${shipment.shipmentType ? `<div><p style="font-size: 0.75rem; color: #9ca3af; text-transform: uppercase; margin-bottom: 0.25rem;">Service Type</p><strong style="color: #0A1628;">${shipment.shipmentType}</strong></div>` : ''}
+        ${shipment.packageInfo?.weight ? `<div><p style="font-size: 0.75rem; color: #9ca3af; text-transform: uppercase; margin-bottom: 0.25rem;">Weight</p><strong style="color: #0A1628;">${shipment.packageInfo.weight} kg</strong></div>` : ''}
+        ${shipment.estimatedDelivery ? `<div><p style="font-size: 0.75rem; color: #9ca3af; text-transform: uppercase; margin-bottom: 0.25rem;">Est. Delivery</p><strong style="color: #0A1628;">${formatDate(shipment.estimatedDelivery)}</strong></div>` : ''}
       </div>
     </div>
     ` : ''}
     
     <!-- Timeline Section -->
-    <div class="timeline-section" style="background: white; border-radius: 0.75rem; border: 1px solid #e5e7eb; padding: 1rem; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
-      <h3 style="font-size: 0.8125rem; font-weight: 700; color: #0A1628; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
-        <svg viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="2" style="width: 1rem; height: 1rem;">
+    <div class="timeline-section" style="background: white; border-radius: 12px; border: 1px solid #e5e7eb; padding: 1.5rem; box-shadow: 0 4px 15px rgba(0,0,0,0.03);">
+      <h3 style="font-size: 1rem; font-weight: 700; color: #0A1628; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.5rem; margin-top: 0;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="2" style="width: 1.25rem; height: 1.25rem;">
           <circle cx="12" cy="12" r="10"></circle>
           <polyline points="12 6 12 12 16 14"></polyline>
         </svg>
         Tracking History
       </h3>
-      <div class="timeline scrollable-timeline">
+      <div class="timeline scrollable-timeline" style="max-height: 400px; overflow-y: auto; padding-right: 1rem;">
         ${renderTimeline(shipment)}
       </div>
     </div>

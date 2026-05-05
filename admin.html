@@ -30,10 +30,9 @@
                     <div class="logo">
                         <div class="logo-icon">
                             <!-- SwapNest Parcel Logo -->
-                            <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:48px;height:48px">
-                                <path d="M30 10 Q18 10 14 20 Q10 30 18 35 Q26 40 30 32 Q34 24 42 26 Q50 28 48 38 Q46 48 34 50" stroke="#00D4FF" stroke-width="4" stroke-linecap="round" fill="none"/>
-                                <path d="M12 22 Q8 32 14 40" stroke="rgba(255,255,255,0.5)" stroke-width="2.5" stroke-linecap="round" fill="none"/>
-                                <path d="M48 20 Q52 30 46 38" stroke="rgba(255,255,255,0.5)" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+                            <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:48px;height:48px">
+                                <path d="M25 50 C25 25 75 25 75 50 C75 60 60 65 50 65" stroke="#00D4FF" stroke-width="12" stroke-linecap="round" fill="none" />
+                                <path d="M75 50 C75 75 25 75 25 50 C25 40 40 35 50 35" stroke="#00D4FF" stroke-width="12" stroke-linecap="round" fill="none" />
                             </svg>
                         </div>
                         <div class="logo-text">
@@ -92,26 +91,13 @@
                 <div class="admin-logo">
                     <div class="logo">
                         <div class="logo-icon">
-                            <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <circle cx="20" cy="20" r="18" stroke="rgba(255,255,255,0.2)" stroke-width="1"
-                                    stroke-dasharray="2 2" />
-                                <rect x="8" y="14" width="24" height="12" rx="1" fill="#00D4FF" />
-                                <line x1="14" y1="14" x2="14" y2="26" stroke="rgba(255,255,255,0.4)"
-                                    stroke-width="1.5" />
-                                <line x1="20" y1="14" x2="20" y2="26" stroke="rgba(255,255,255,0.4)"
-                                    stroke-width="1.5" />
-                                <line x1="26" y1="14" x2="26" y2="26" stroke="rgba(255,255,255,0.4)"
-                                    stroke-width="1.5" />
-                                <path d="M 4 20 Q 12 8, 20 20 T 36 20" stroke="white" stroke-width="2" fill="none"
-                                    stroke-linecap="round" />
-                                <path d="M 34 18 L 36 20 L 34 22" stroke="white" stroke-width="2" fill="none"
-                                    stroke-linecap="round" stroke-linejoin="round" />
-                                <circle cx="12" cy="20" r="1.5" fill="white" />
-                                <circle cx="28" cy="20" r="1.5" fill="white" />
+                            <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M25 50 C25 25 75 25 75 50 C75 60 60 65 50 65" stroke="#00D4FF" stroke-width="12" stroke-linecap="round" fill="none" />
+                                <path d="M75 50 C75 75 25 75 25 50 C25 40 40 35 50 35" stroke="#00D4FF" stroke-width="12" stroke-linecap="round" fill="none" />
                             </svg>
                         </div>
                         <div class="logo-text">
-                            <span class="logo-title">FIRSTRANK PARCEL</span>
+                            <span class="logo-title">SWAPNEST PARCEL</span>
                             <span class="logo-subtitle">Shipping & Logistics</span>
                         </div>
                     </div>
@@ -557,8 +543,12 @@
 
     <!-- Supabase SDK -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <script src="supabaseClient.js"></script>
-    <script src="admin.js"></script>
+    <script src="supabaseClient.js?v=2.1"></script>
+
+    <!-- EmailJS SDK -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+
+    <script src="admin.js?v=2.1"></script>
 </body>
 
 </html>
