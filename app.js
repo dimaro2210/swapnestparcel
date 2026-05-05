@@ -46,6 +46,16 @@ function formatDate(dateString) {
   return new Date(dateString).toLocaleDateString();
 }
 
+function escapeHTML(str) {
+  if (!str) return '';
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
+}
+
 function formatDateTime(dateString) {
   return new Date(dateString).toLocaleString();
 }
@@ -224,7 +234,7 @@ function displayTrackingResult(shipment) {
           </svg>
           <div>
             <p style="font-size: 0.75rem; font-weight: 700; color: #92400e; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.25rem;">Special Instructions</p>
-            <p style="font-size: 0.9375rem; color: #78350f; line-height: 1.5; margin: 0;">${shipment.specialInstructions}</p>
+            <p style="font-size: 0.9375rem; color: #78350f; line-height: 1.5; margin: 0;">${escapeHTML(shipment.specialInstructions)}</p>
           </div>
         </div>
       </div>
@@ -235,7 +245,7 @@ function displayTrackingResult(shipment) {
       <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 1rem;">
         <div>
           <p style="font-size: 0.75rem; color: rgba(255,255,255,0.7); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.25rem;">Tracking Code</p>
-          <p style="font-size: 1.5rem; font-family: monospace; font-weight: 700; color: #00D4FF; margin: 0; word-break: break-all; letter-spacing: 1px;">${shipment.trackingCode}</p>
+          <p style="font-size: 1.5rem; font-family: monospace; font-weight: 700; color: #00D4FF; margin: 0; word-break: break-all; letter-spacing: 1px;">${escapeHTML(shipment.trackingCode)}</p>
         </div>
         <span class="${getStatusClass(shipment.currentStatus)}" style="font-size: 0.875rem; padding: 0.5rem 1rem; border-radius: 20px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em;">${getStatusLabel(shipment.currentStatus)}</span>
       </div>
@@ -243,16 +253,16 @@ function displayTrackingResult(shipment) {
       <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.1);">
         <div>
           <p style="font-size: 0.75rem; color: rgba(255,255,255,0.7); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.25rem;">Origin</p>
-          <p style="font-weight: 600; color: white; font-size: 1rem; margin: 0;">${originDisplay || 'N/A'}</p>
+          <p style="font-weight: 600; color: white; font-size: 1rem; margin: 0;">${escapeHTML(originDisplay) || 'N/A'}</p>
         </div>
         <div>
           <p style="font-size: 0.75rem; color: rgba(255,255,255,0.7); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.25rem;">Destination</p>
-          <p style="font-weight: 600; color: white; font-size: 1rem; margin: 0;">${destinationDisplay || 'N/A'}</p>
+          <p style="font-weight: 600; color: white; font-size: 1rem; margin: 0;">${escapeHTML(destinationDisplay) || 'N/A'}</p>
         </div>
         ${currentLocation ? `
           <div>
             <p style="font-size: 0.75rem; color: rgba(255,255,255,0.7); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.25rem;">Current Location</p>
-            <p style="font-weight: 600; color: #22c55e; font-size: 1rem; margin: 0;">📍 ${currentLocation}</p>
+            <p style="font-weight: 600; color: #22c55e; font-size: 1rem; margin: 0;">📍 ${escapeHTML(currentLocation)}</p>
           </div>
         ` : ''}
       </div>
@@ -270,9 +280,9 @@ function displayTrackingResult(shipment) {
         Shipment Details
       </h3>
       <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem; font-size: 0.9375rem; color: #4b5563;">
-        ${shipment.carrier ? `<div><p style="font-size: 0.75rem; color: var(--muted-color); text-transform: uppercase; margin-bottom: 0.25rem;">Carrier</p><strong style="color: var(--heading-color);">${shipment.carrier}</strong></div>` : ''}
-        ${shipment.shipmentType ? `<div><p style="font-size: 0.75rem; color: var(--muted-color); text-transform: uppercase; margin-bottom: 0.25rem;">Service Type</p><strong style="color: var(--heading-color);">${shipment.shipmentType}</strong></div>` : ''}
-        ${shipment.packageInfo?.weight ? `<div><p style="font-size: 0.75rem; color: var(--muted-color); text-transform: uppercase; margin-bottom: 0.25rem;">Weight</p><strong style="color: var(--heading-color);">${shipment.packageInfo.weight} kg</strong></div>` : ''}
+        ${shipment.carrier ? `<div><p style="font-size: 0.75rem; color: var(--muted-color); text-transform: uppercase; margin-bottom: 0.25rem;">Carrier</p><strong style="color: var(--heading-color);">${escapeHTML(shipment.carrier)}</strong></div>` : ''}
+        ${shipment.shipmentType ? `<div><p style="font-size: 0.75rem; color: var(--muted-color); text-transform: uppercase; margin-bottom: 0.25rem;">Service Type</p><strong style="color: var(--heading-color);">${escapeHTML(shipment.shipmentType)}</strong></div>` : ''}
+        ${shipment.packageInfo?.weight ? `<div><p style="font-size: 0.75rem; color: var(--muted-color); text-transform: uppercase; margin-bottom: 0.25rem;">Weight</p><strong style="color: var(--heading-color);">${escapeHTML(shipment.packageInfo.weight)} kg</strong></div>` : ''}
         ${shipment.estimatedDelivery ? `<div><p style="font-size: 0.75rem; color: var(--muted-color); text-transform: uppercase; margin-bottom: 0.25rem;">Est. Delivery</p><strong style="color: var(--heading-color);">${formatDate(shipment.estimatedDelivery)}</strong></div>` : ''}
       </div>
     </div>
